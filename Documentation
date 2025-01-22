@@ -3,7 +3,7 @@
 ---
 
 ### **Overview**
-This document outlines the step-by-step process followed to set up a Jekyll-based website and host it on GitHub Pages. It includes essential commands, file paths, and configurations to help retrace the steps or replicate the process.
+This document outlines the step-by-step process followed to set up a Jekyll-based website, apply the **Minimal Mistakes** theme, and host the site on GitHub Pages. It includes essential commands, file paths, and configurations to help retrace the steps or replicate the process.
 
 ---
 
@@ -71,57 +71,66 @@ This document outlines the step-by-step process followed to set up a Jekyll-base
 
 ---
 
-### **4. Modify the Jekyll Site**
-1. Edit `_config.yml`:
-   - Example updates:
-     ```yaml
-     title: "RLionheart's Site"
-     description: "A personal blog hosted on GitHub Pages."
-     theme: minima
-     ```
+### **4. Apply the Minimal Mistakes Theme**
+1. **Update `_config.yml`:**
+   Open the `_config.yml` file in a text editor and update it to include:
+   ```yaml
+   remote_theme: "mmistakes/minimal-mistakes"
+   plugins:
+     - jekyll-include-cache
+   ```
 
-2. Customize `index.markdown` for the homepage.
+2. **Add the Required Plugin:**
+   Install the `jekyll-include-cache` plugin:
+   ```bash
+   bundle add jekyll-include-cache
+   ```
 
-3. Add new blog posts in the `_posts/` directory:
-   - File naming format: `YYYY-MM-DD-title.md`
-   - Example content:
-     ```markdown
-     ---
-     layout: post
-     title: "My First Post"
-     ---
-     Welcome to my first blog post!
-     ```
+3. **Install Dependencies:**
+   After updating the `Gemfile`, run:
+   ```bash
+   bundle install
+   ```
+
+4. **Test Locally:**
+   Start the Jekyll server to preview the changes:
+   ```bash
+   bundle exec jekyll serve
+   ```
+   Access the site at:
+   ```
+   http://127.0.0.1:4000/
+   ```
 
 ---
 
 ### **5. Push Changes to GitHub**
-1. Stage and commit changes:
+1. **Stage and Commit Changes:**
    ```bash
    git add .
-   git commit -m "Initial Jekyll site setup"
+   git commit -m "Updated config for Minimal Mistakes theme"
    ```
 
-2. Push changes to the repository:
+2. **Pull Remote Changes (if necessary):**
+   To ensure your local repository is up-to-date:
+   ```bash
+   git pull origin main
+   ```
+
+3. **Push to GitHub:**
    ```bash
    git push origin main
    ```
 
 ---
 
-### **6. Configure GitHub Pages**
-1. Go to the repository settings on GitHub.
-2. Under **Settings > Pages**, select:
-   - **Branch**: `main`.
-   - **Directory**: `/ (root)`.
-3. Save changes. The site will be available at:
-   ```
-   https://rlionheart.github.io/
-   ```
+### **6. Verify the Live Site**
+1. Go to your GitHub Pages URL (e.g., `https://rlionheart.github.io/`).
+2. Ensure the **Minimal Mistakes** theme is applied.
 
 ---
 
-### **7. Troubleshooting and Notes**
+### **Troubleshooting and Notes**
 1. **Common Errors:**
    - Missing Gems: Add the gem to `Gemfile` and run `bundle install`.
      ```ruby
@@ -129,8 +138,12 @@ This document outlines the step-by-step process followed to set up a Jekyll-base
      gem "csv"
      ```
 
-2. **Favicon Issue:**
-   - Add a `favicon.ico` file to the root directory to eliminate the `/favicon.ico not found` error.
+2. **Push Rejection:**
+   If `git push` fails due to remote changes, resolve by:
+   ```bash
+   git pull origin main
+   git push origin main
+   ```
 
 3. **Custom Domain (Optional):**
    - Purchase a domain and configure DNS records to point to GitHub Pages.
@@ -139,7 +152,7 @@ This document outlines the step-by-step process followed to set up a Jekyll-base
 
 ### **Key Commands Summary**
 - Clone repository: `git clone https://github.com/<username>/<repository>.git`
-- Create Jekyll site: `jekyll new . --force`
+- Apply Minimal Mistakes: Update `_config.yml` and install plugins.
 - Start Jekyll server: `bundle exec jekyll serve`
 - Push to GitHub: `git add . && git commit -m "message" && git push origin main`
 
@@ -148,4 +161,6 @@ This document outlines the step-by-step process followed to set up a Jekyll-base
 ### **Final Output**
 Your live site is available at:
 [https://rlionheart.github.io/](https://rlionheart.github.io/)
+
+
 
